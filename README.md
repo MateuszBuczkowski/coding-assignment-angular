@@ -32,14 +32,14 @@ You do not have time to implement everything so pick most important requirements
 ## Ideal App requirements
 
 ### App Skeleton:
-- fix main menu - currently menu items do not expand
+- ~~fix main menu - currently menu items do not expand~~
 - add menu responsiveness (behaviour for small screens) - pick your solution
-- add app routing - follow redirectLinks for menu items defined in app.component.ts (`path: ''` should redirect to entities/homepage path where `HomepageComponent` should appear)
-- `EntitiesFeatureListModule` and `EntitiesFeatureLocationDashboardModule` should be Lazy Loaded, inside that modules create proper components for List and dashboard view (in our system entity means employee).
+- ~~add app routing - follow redirectLinks for menu items defined in app.component.ts (`path: ''` should redirect to entities/homepage path where `EntitiesListComponent` should appear)~~
+- ~~`EntitiesFeatureListModule` and `EntitiesFeatureLocationDashboardModule` should be Lazy Loaded, inside that modules create proper components for List and dashboard view (in our system entity means employee).~~
 
 ### Features:
 
-### Feature data-repostiory library:
+### Feature data-repository library:
 - API is not ready yet, but you need to deliver, so you need to create mock service `entity-mock.service.ts` that imitate real API behaviour described in `entity.service.ts`. Methods in mock service should have delay (1000 ms) on response and should randomly return error 403 with probability equals to 0.1. You should use this mock service to interact with data in developed app.
 - all components should use `EntityService` for data interaction. `MockEntityService` should be used in a way that allow to switch to the target implementation (`EntityService`) by changing one file (All components that uses `EntityService` should not require changes).
 

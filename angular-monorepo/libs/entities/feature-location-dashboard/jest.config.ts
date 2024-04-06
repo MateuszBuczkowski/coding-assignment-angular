@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'entities-feature-location-dashboard',
+  displayName: 'entities-location-dashboard',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory:

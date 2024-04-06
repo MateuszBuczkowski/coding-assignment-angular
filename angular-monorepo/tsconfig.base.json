@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@libs/*": [
+        "libs/*"
+      ],
       "@angular-monorepo/entities/data-repository": [
         "libs/entities/data-repository/src/index.ts"
       ],

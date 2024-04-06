@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  
+
   title = 'location-app';
 
   items = [
@@ -17,12 +17,12 @@ export class AppComponent {
           {
             label: 'Homepage',
             icon: 'pi pi-fw pi-bookmark',
-            routerLink: 'entity/homepage'
+            routerLink: 'entity/entities-list'
           },
           {
               label: 'List',
-              icon: 'pi pi-fw pi-list',
-              routerLink: 'entity/list'
+              icon: 'pi pi-fw pi-entities-list',
+              routerLink: 'entity/entities-list'
           },
         ]
     },

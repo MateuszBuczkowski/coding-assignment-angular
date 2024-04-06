@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'angular-monorepo-homepage',
+  selector: 'angular-monorepo-entities-list',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
 })
