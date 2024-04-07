@@ -40,8 +40,8 @@ You do not have time to implement everything so pick most important requirements
 ### Features:
 
 ### Feature data-repository library:
-- API is not ready yet, but you need to deliver, so you need to create mock service `entity-mock.service.ts` that imitate real API behaviour described in `entity.service.ts`. Methods in mock service should have delay (1000 ms) on response and should randomly return error 403 with probability equals to 0.1. You should use this mock service to interact with data in developed app.
-- all components should use `EntityService` for data interaction. `MockEntityService` should be used in a way that allow to switch to the target implementation (`EntityService`) by changing one file (All components that uses `EntityService` should not require changes).
+- ~~API is not ready yet, but you need to deliver, so you need to create mock service `entity-mock.service.ts` that imitate real API behaviour described in `entity.service.ts`. Methods in mock service should have delay (1000 ms) on response and should randomly return error 403 with probability equals to 0.1. You should use this mock service to interact with data in developed app.~~
+- ~~all components should use `EntityService` for data interaction. `MockEntityService` should be used in a way that allow to switch to the target implementation (`EntityService`) by changing one file (All components that uses `EntityService` should not require changes).~~
 
 ### Feature Entity List
 - Create entity list component in `entities-feature-list` library.

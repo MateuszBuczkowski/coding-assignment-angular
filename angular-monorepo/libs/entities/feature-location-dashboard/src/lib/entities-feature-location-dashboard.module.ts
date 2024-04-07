@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   EntitiesLocationDashboardComponent
 } from './entities-location-dashboard/entities-location-dashboard.component';
+import { EntitiesDataRepositoryModule } from '@libs/entities/data-repository/src';
 
 const routes: Routes = [
   { path: '', component: EntitiesLocationDashboardComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    EntitiesDataRepositoryModule,
     RouterModule.forChild(routes)
   ],
   declarations: [EntitiesLocationDashboardComponent],

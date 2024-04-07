@@ -9,6 +9,7 @@ import { BadgeModule } from 'primeng/badge';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
+import { EntitiesDataRepositoryModule } from '@libs/entities/data-repository/src';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { appRoutes } from './app.routes';
     BadgeModule,
     BrowserAnimationsModule,
     BrowserModule,
+    EntitiesDataRepositoryModule,
     EntitiesFeatureHomepageModule,
     PanelMenuModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
