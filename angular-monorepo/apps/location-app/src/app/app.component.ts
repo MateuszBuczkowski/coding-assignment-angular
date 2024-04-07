@@ -17,7 +17,7 @@ export class AppComponent {
           {
             label: 'Homepage',
             icon: 'pi pi-fw pi-bookmark',
-            routerLink: 'entity/entities-list'
+            routerLink: 'entities/homepage'
           },
           {
               label: 'List',

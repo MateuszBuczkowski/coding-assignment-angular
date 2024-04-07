@@ -1,10 +1,15 @@
 import { Route } from '@angular/router';
+import { EntitiesListComponent } from '@libs/entities/feature-list/src/lib/entities-list/entities-list.component';
 
 export const appRoutes: Route[] = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'entity/entities-list',
+    redirectTo: 'entities/homepage',
+  },
+  {
+    path: 'entities/homepage',
+    component: EntitiesListComponent
   },
   {
     path: 'entity/entities-list',
