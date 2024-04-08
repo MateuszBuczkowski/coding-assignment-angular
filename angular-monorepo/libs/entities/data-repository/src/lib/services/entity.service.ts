@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 @Injectable()
 export class EntityService {
 
-    getEntityList(getEntityListParams: GetEntityListParams): Observable<EntityListItem[] | HttpErrorResponse> {
+    getEntityList(getEntityListParams: GetEntityListParams): Observable<EntityListItem[]> {
         return of([]);
     }
 

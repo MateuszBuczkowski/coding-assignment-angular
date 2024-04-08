@@ -10,6 +10,8 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import { EntitiesDataRepositoryModule } from '@libs/entities/data-repository/src';
+import { MessageService as PrimeNgMessageService } from 'primeng/api';
+import { ToastModule as PrimeNgToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,9 +24,10 @@ import { EntitiesDataRepositoryModule } from '@libs/entities/data-repository/src
     EntitiesDataRepositoryModule,
     EntitiesFeatureHomepageModule,
     PanelMenuModule,
+    PrimeNgToastModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
   ],
-  providers: [],
+  providers: [PrimeNgMessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

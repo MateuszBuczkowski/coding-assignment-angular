@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EntitiesListComponent } from './entities-list.component';
 
-describe('HomepageComponent', () => {
+describe('EntitiesListComponent', () => {
   let component: EntitiesListComponent;
   let fixture: ComponentFixture<EntitiesListComponent>;
 

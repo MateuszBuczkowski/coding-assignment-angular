@@ -44,12 +44,12 @@ You do not have time to implement everything so pick most important requirements
 - ~~all components should use `EntityService` for data interaction. `MockEntityService` should be used in a way that allow to switch to the target implementation (`EntityService`) by changing one file (All components that uses `EntityService` should not require changes).~~
 
 ### Feature Entity List
-- Create entity list component in `entities-feature-list` library.
-- Display list of all entities using PrimeNG Table.
-- Table should contain all columns except entity ID.
-- if entity is inactive then in `Is Active` column for that entity you should display text: 'Inactive' with red prime icon named: `pi-exclamation-triangle`
-- visibility of columns should be selectable by multiselect component and that selection should be saved in local storage and it should be read from also on list init.
-- search input should be created. It should filter entity list by `name` and `trackingId`. Please have in mind that this is costly operation on backend side so be prepared.
+- ~~Create entity list component in `entities-feature-list` library.~~
+- ~~Display list of all entities using PrimeNG Table.~~
+- ~~Table should contain all columns except entity ID.~~
+- ~~if entity is inactive then in `Is Active` column for that entity you should display text: 'Inactive' with red prime icon named: `pi-exclamation-triangle`~~
+- ~~visibility of columns should be selectable by multiselect component and that selection should be saved in local storage and it should be read from also on list init.~~
+- ~~search input should be created. It should filter entity list by `name` and `trackingId`. Please have in mind that this is costly operation on backend side so be prepared.~~
 
 ### Feature Entity Details
 - create entity details component that should appear after click on entity name in the entity list

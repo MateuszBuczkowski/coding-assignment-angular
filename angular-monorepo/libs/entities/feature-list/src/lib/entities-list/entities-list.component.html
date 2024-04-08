@@ -1,1 +1,60 @@
-<p>Entities list</p>
+<div>
+  <p-multiSelect [(ngModel)]="entitiesListTableSelectedColumns"
+                 [options]="entitiesListTableColumnsOptions"
+                 (onChange)="saveEntitiesListVisibleColumns()"
+                 optionLabel="name"
+                 placeholder="Choose visible columns">
+  </p-multiSelect>
+  <form [formGroup]="entitiesListTableSearchForm" novalidate>
+    <div class="field">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input pInputText
+              type="text"
+              id="entitySearch"
+              placeholder="Search by name or tracking id"
+              formControlName="entitySearch" />
+      </span>
+    </div>
+  </form>
+  <div *ngIf="!isLoading else loadingSpinner">
+    <p-table [columns]="entitiesListTableColumnsConfiguration" [value]="entitiesList">
+      <ng-template pTemplate="header">
+      <tr>
+        <ng-container *ngFor="let column of entitiesListTableColumnsConfiguration">
+          <th *ngIf="column.isVisible">{{ column.columnName }}</th>
+        </ng-container>
+      </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-entity>
+        <tr>
+          <ng-container *ngFor="let column of entitiesListTableColumnsConfiguration">
+            <td *ngIf="column.isVisible">
+              <ng-container [ngSwitch]="column.fieldKey">
+                <ng-container *ngSwitchCase="'name'">
+                  <a href="#" title="" (onClick)="onEntityClick()">{{ entity[column.fieldKey] }}</a>
+                </ng-container>
+                <ng-container *ngSwitchCase="'isActive'">
+                  <ng-container *ngIf="entity[column.fieldKey] else entityIsNotActive">
+                    Active
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  {{ entity[column.fieldKey] }}
+                </ng-container>
+              </ng-container>
+            </td>
+          </ng-container>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <ng-template #loadingSpinner>
+    <p-progressSpinner></p-progressSpinner>
+  </ng-template>
+</div>
+
+<ng-template #entityIsNotActive>
+  <i class="pi pi-exclamation-triangle"></i> Inactive
+</ng-template>
+

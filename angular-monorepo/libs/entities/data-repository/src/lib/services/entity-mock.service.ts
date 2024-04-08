@@ -145,15 +145,16 @@ export class EntityMockService extends EntityService {
     {id: 'id1', name: 'Jacob Holland'},
   ];
 
-  override getEntityList(getEntityListParams: GetEntityListParams): Observable<EntityListItem[] | HttpErrorResponse> {
-    if (this._showErrorResponse()) {
-      return this._httpRequestForbiddenErrorResponse();
-    } else {
-      return new Observable((observer: Observer<EntityListItem[]>) => {
-        observer.next(this._entities);
+  override getEntityList(getEntityListParams: GetEntityListParams): Observable<EntityListItem[]> {
+    return new Observable((observer: Observer<EntityListItem[]>) => {
+      if (this._showErrorResponse()) {
+        this._httpRequestForbiddenErrorResponse();
         observer.complete();
-      }).pipe(delay(this._apiResponseDelay));
-    }
+      } else {
+        observer.next(this._entities);
+      }
+      observer.complete();
+    }).pipe(delay(this._apiResponseDelay));
   }
 
   override getEntityDetails(entityId: string): Observable<EntityDetails | HttpErrorResponse> {
@@ -229,13 +230,14 @@ export class EntityMockService extends EntityService {
   private _getLastWeekEmployeesVisits(): EmployeeVisits[] {
     return Object.values<EmployeeVisits>(this._lastWeekVisitsLog.reduce<Record<string, EmployeeVisits>>(
       function(visits: Record<string, EmployeeVisits>, employee: Employee) {
-      if (visits[employee.id]) {
-        visits[employee.id].visits++;
-      } else {
-        visits[employee.id] = { name: employee.name, visits: 1 };
-      }
-      return visits;
-    }, {}));
+        if (visits[employee.id]) {
+          visits[employee.id].visits++;
+        } else {
+          visits[employee.id] = { name: employee.name, visits: 1 };
+        }
+        return visits;
+      }, {}
+    ));
   }
 
   private _showErrorResponse(): boolean {
