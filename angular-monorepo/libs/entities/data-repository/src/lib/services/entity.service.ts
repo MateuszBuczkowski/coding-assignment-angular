@@ -10,7 +10,7 @@ export class EntityService {
         return of([]);
     }
 
-    getEntityDetails(entityId: string): Observable<EntityDetails | HttpErrorResponse> {
+    getEntityDetails(entityId: string): Observable<EntityDetails> {
         return of({
             entityId: '',
             trackingId: '',
@@ -22,7 +22,7 @@ export class EntityService {
         });
     }
 
-    updateEntity(entityUpdateDto: EntityUpdateDto, entityId: string): Observable<EntityDetails | HttpErrorResponse> {
+    updateEntity(entityUpdateDto: EntityUpdateDto, entityId: string): Observable<EntityDetails> {
         return of({
             entityId: '',
             trackingId: '',
@@ -34,11 +34,11 @@ export class EntityService {
         });
     }
 
-    getEntityTypes(): Observable<EntityType[] | HttpErrorResponse> {
+    getEntityTypes(): Observable<EntityType[]> {
         return of([]);
     }
 
-    getLocationStats(): Observable<LocationStats | HttpErrorResponse> {
+    getLocationStats(): Observable<LocationStats> {
         return of({
             lastWeekLocationOccupancy: [],
             lastWeekEmployeesVisits: [],

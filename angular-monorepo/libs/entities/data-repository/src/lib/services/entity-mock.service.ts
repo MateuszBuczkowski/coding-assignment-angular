@@ -16,7 +16,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class EntityMockService extends EntityService {
 
   private _apiResponseDelay = 1000;
-  private _apiResponseErrorProbability = 0; // 100 = 100%, 10 = 10%, etc.
+  private _apiResponseErrorProbability = 10; // 100 = 100%, 10 = 10%, etc.
 
   private _entities: EntityListItem[] = [
     {
@@ -151,17 +151,24 @@ export class EntityMockService extends EntityService {
         this._httpRequestForbiddenErrorResponse();
         observer.complete();
       } else {
-        observer.next(this._entities);
+        if (getEntityListParams.name) {
+          observer.next(this._entities.filter((entity: EntityListItem) => {
+            return entity.name === getEntityListParams.name;
+          }));
+        } else {
+          observer.next(this._entities);
+        }
       }
       observer.complete();
     }).pipe(delay(this._apiResponseDelay));
   }
 
-  override getEntityDetails(entityId: string): Observable<EntityDetails | HttpErrorResponse> {
-    if (this._showErrorResponse()) {
-      return this._httpRequestForbiddenErrorResponse();
-    } else {
-      return new Observable((observer: Observer<EntityDetails>) => {
+  override getEntityDetails(entityId: string): Observable<EntityDetails> {
+    return new Observable((observer: Observer<EntityDetails>) => {
+      if (this._showErrorResponse()) {
+        this._httpRequestForbiddenErrorResponse();
+        observer.complete();
+      } else {
         const entityDetailsIndex: number = this._entitiesDetails.findIndex((entityDetails: EntityDetails): boolean => {
           return entityDetails.entityId === entityId;
         });
@@ -178,16 +185,17 @@ export class EntityMockService extends EntityService {
             attributes: [],
           });
         }
-        observer.complete();
-      }).pipe(delay(this._apiResponseDelay));
-    }
+      }
+      observer.complete();
+    }).pipe(delay(this._apiResponseDelay));
   }
 
-  override updateEntity(entityUpdateDto: EntityUpdateDto, entityId: string): Observable<EntityDetails | HttpErrorResponse> {
-    if (this._showErrorResponse()) {
-      return this._httpRequestForbiddenErrorResponse();
-    } else {
-      return new Observable((observer: Observer<EntityDetails>) => {
+  override updateEntity(entityUpdateDto: EntityUpdateDto, entityId: string): Observable<EntityDetails> {
+    return new Observable((observer: Observer<EntityDetails>) => {
+      if (this._showErrorResponse()) {
+        this._httpRequestForbiddenErrorResponse();
+        observer.complete();
+      } else {
         observer.next({
           entityId: '',
           trackingId: '',
@@ -197,34 +205,36 @@ export class EntityMockService extends EntityService {
           isActive: false,
           attributes: [],
         });
-        observer.complete();
-      }).pipe(delay(this._apiResponseDelay));
-    }
+      }
+      observer.complete();
+    }).pipe(delay(this._apiResponseDelay));
   }
 
-  override getEntityTypes(): Observable<EntityType[] | HttpErrorResponse> {
-    if (this._showErrorResponse()) {
-      return this._httpRequestForbiddenErrorResponse();
-    } else {
-      return new Observable((observer: Observer<EntityType[]>) => {
+  override getEntityTypes(): Observable<EntityType[]> {
+    return new Observable((observer: Observer<EntityType[]>) => {
+      if (this._showErrorResponse()) {
+        this._httpRequestForbiddenErrorResponse();
+        observer.complete();
+      } else {
         observer.next(this._entityTypes);
-        observer.complete();
-      }).pipe(delay(this._apiResponseDelay));
-    }
+      }
+      observer.complete();
+    }).pipe(delay(this._apiResponseDelay));
   }
 
-  override getLocationStats(): Observable<LocationStats | HttpErrorResponse> {
-    if (this._showErrorResponse()) {
-      return this._httpRequestForbiddenErrorResponse();
-    } else {
-      return new Observable((observer: Observer<LocationStats>) => {
+  override getLocationStats(): Observable<LocationStats> {
+    return new Observable((observer: Observer<LocationStats>) => {
+      if (this._showErrorResponse()) {
+        this._httpRequestForbiddenErrorResponse();
+        observer.complete();
+      } else {
         observer.next({
           lastWeekLocationOccupancy: this._lastWeekLocationOccupancy,
           lastWeekEmployeesVisits: this._getLastWeekEmployeesVisits(),
         });
-        observer.complete();
-      }).pipe(delay(this._apiResponseDelay));
-    }
+      }
+      observer.complete();
+    }).pipe(delay(this._apiResponseDelay));
   }
 
   private _getLastWeekEmployeesVisits(): EmployeeVisits[] {

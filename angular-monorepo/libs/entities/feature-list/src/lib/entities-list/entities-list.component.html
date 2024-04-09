@@ -1,12 +1,14 @@
 <div>
-  <p-multiSelect [(ngModel)]="entitiesListTableSelectedColumns"
-                 [options]="entitiesListTableColumnsOptions"
-                 (onChange)="saveEntitiesListVisibleColumns()"
-                 optionLabel="name"
-                 placeholder="Choose visible columns">
-  </p-multiSelect>
+  <div class="m-10">
+    <p-multiSelect [(ngModel)]="entitiesListTableSelectedColumns"
+                   [options]="entitiesListTableColumnsOptions"
+                   (onChange)="saveEntitiesListVisibleColumns()"
+                   optionLabel="name"
+                   placeholder="Choose visible columns">
+    </p-multiSelect>
+  </div>
   <form [formGroup]="entitiesListTableSearchForm" novalidate>
-    <div class="field">
+    <div class="m-10">
       <span class="p-input-icon-left">
         <i class="pi pi-search"></i>
         <input pInputText
@@ -17,8 +19,8 @@
       </span>
     </div>
   </form>
-  <div *ngIf="!isLoading else loadingSpinner">
-    <p-table [columns]="entitiesListTableColumnsConfiguration" [value]="entitiesList">
+  <div *ngIf="!(entitiesListService.isEntitiesListDataLoading$ | async) else loadingSpinner">
+    <p-table [columns]="entitiesListTableColumnsConfiguration" [value]="entitiesListService.entitiesList">
       <ng-template pTemplate="header">
       <tr>
         <ng-container *ngFor="let column of entitiesListTableColumnsConfiguration">
@@ -26,13 +28,13 @@
         </ng-container>
       </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-entity>
+      <ng-template *ngIf="entitiesListService.entitiesList.length > 0" pTemplate="body" let-entity>
         <tr>
           <ng-container *ngFor="let column of entitiesListTableColumnsConfiguration">
             <td *ngIf="column.isVisible">
               <ng-container [ngSwitch]="column.fieldKey">
                 <ng-container *ngSwitchCase="'name'">
-                  <a href="#" title="" (onClick)="onEntityClick()">{{ entity[column.fieldKey] }}</a>
+                  <a [title]="entity[column.fieldKey] + ' details'" [routerLink]="['/entity/entities-list/' + entity.entityId + '/view']">{{ entity[column.fieldKey] }}</a>
                 </ng-container>
                 <ng-container *ngSwitchCase="'isActive'">
                   <ng-container *ngIf="entity[column.fieldKey] else entityIsNotActive">
@@ -48,6 +50,9 @@
         </tr>
       </ng-template>
     </p-table>
+    <div *ngIf="entitiesListService.entitiesList.length === 0">
+      No Entities found
+    </div>
   </div>
   <ng-template #loadingSpinner>
     <p-progressSpinner></p-progressSpinner>
@@ -57,4 +62,6 @@
 <ng-template #entityIsNotActive>
   <i class="pi pi-exclamation-triangle"></i> Inactive
 </ng-template>
+
+<p-toast></p-toast>
 

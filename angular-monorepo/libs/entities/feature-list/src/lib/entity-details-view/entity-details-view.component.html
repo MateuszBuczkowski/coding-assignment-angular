@@ -1,0 +1,80 @@
+<div *ngIf="!isLoading else loadingSpinner">
+  <div *ngIf="!entityDetails">
+    <p>Unable to load entity details</p>
+    <div class="mt-30">
+      <p-button class="edit-entity-btn" [routerLink]="'/entity/entities-list/'">Back</p-button>
+    </div>
+  </div>
+  <p-panel *ngIf="entityDetails" [header]="entityDetails.name">
+    <form [formGroup]="entityDetailsForm">
+      <div class="m-10">
+        <p><label>Entity ID</label></p>
+        <input pInputText
+               class="p-inputtext"
+               type="text"
+               id="entityId"
+               placeholder="Entity ID"
+               [readonly]="true"
+               formControlName="entityId" />
+      </div>
+      <div class="m-10">
+        <p><label>Tracking ID</label></p>
+        <input pInputText
+               class="p-inputtext"
+               type="text"
+               id="trackingId"
+               placeholder="Tracking ID"
+               [readonly]="true"
+               formControlName="trackingId" />
+      </div>
+      <div class="m-10">
+        <p><label>Name</label></p>
+        <input pInputText
+               class="p-inputtext"
+               type="text"
+               id="name"
+               placeholder="Name"
+               [readonly]="true"
+               formControlName="name" />
+      </div>
+      <div class="m-10">
+        <p><label>Entity Type</label></p>
+        <p-dropdown
+          formControlName="entityType"
+          [options]="entityTypeOptions"
+          optionValue="id"
+          optionLabel="name"
+          placeholder="Select Entity Type">
+        </p-dropdown>
+      </div>
+      <div class="m-10">
+        <p><label>Entity Status</label></p>
+        <p-selectButton
+          [options]="entityStatusOptions"
+          formControlName="entityStatus"
+          optionLabel="label"
+          optionValue="value">
+        </p-selectButton>
+      </div>
+      <div class="m-10">
+        <p><label>Is Active</label></p>
+        <p-selectButton
+          [options]="isActiveOptions"
+          formControlName="isActive"
+          optionLabel="label"
+          optionValue="value">
+        </p-selectButton>
+      </div>
+      <div class="m-10">
+        <p>Attributes</p>
+        <p-tag *ngFor="let attribute of entityDetails.attributes" class="mr-5"><b>{{ attribute }}</b></p-tag>
+      </div>
+    </form>
+    <div class="mt-30">
+      <p-button class="edit-entity-btn" [routerLink]="'/entity/entities-list/' + entityId + '/edit'">Edit Entity</p-button>
+    </div>
+  </p-panel>
+</div>
+<ng-template #loadingSpinner>
+  <p-progressSpinner></p-progressSpinner>
+</ng-template>

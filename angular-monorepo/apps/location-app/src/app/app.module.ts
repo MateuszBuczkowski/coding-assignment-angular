@@ -11,7 +11,8 @@ import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import { EntitiesDataRepositoryModule } from '@libs/entities/data-repository/src';
 import { MessageService as PrimeNgMessageService } from 'primeng/api';
-import { ToastModule as PrimeNgToastModule } from 'primeng/toast';
+import { DialogService as PrimeNgDialogService } from 'primeng/dynamicdialog';
+import { EntitiesListService } from '@libs/entities/feature-list/src/lib/services/entities-list.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,10 +25,13 @@ import { ToastModule as PrimeNgToastModule } from 'primeng/toast';
     EntitiesDataRepositoryModule,
     EntitiesFeatureHomepageModule,
     PanelMenuModule,
-    PrimeNgToastModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
   ],
-  providers: [PrimeNgMessageService],
+  providers: [
+    EntitiesListService,
+    PrimeNgDialogService,
+    PrimeNgMessageService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -52,15 +52,15 @@ You do not have time to implement everything so pick most important requirements
 - ~~search input should be created. It should filter entity list by `name` and `trackingId`. Please have in mind that this is costly operation on backend side so be prepared.~~
 
 ### Feature Entity Details
-- create entity details component that should appear after click on entity name in the entity list
-- component should display all `EntityDetails` data
-- after click on edit button it should switch to edit mode and allow to edit all three fields from the `EntityUpdateDto` where `entityType` should be selected from available types (get data from service).
-- please use reactive forms
-- validate for required fields
-- name should be unique so please write validator that uses entities list endpoint with `GetEntityListParams` `name` field too check uniqueness.
-- name should not equal to trackingId - please validate
-- save button should trigger entire form validation and if form is valid it should update entity.
-- after proper update user should land in the entity details page and after error should be redirected to entity list page.
+- ~~create entity details component that should appear after click on entity name in the entity list~~
+- ~~component should display all `EntityDetails` data~~
+- ~~after click on edit button it should switch to edit mode and allow to edit all three fields from the `EntityUpdateDto` where `entityType` should be selected from available types (get data from service).~~
+- ~~please use reactive forms~~
+- ~~validate for required fields~~
+- ~~name should be unique so please write validator that uses entities list endpoint with `GetEntityListParams` `name` field too check uniqueness.~~
+- ~~name should not equal to trackingId - please validate~~
+- ~~save button should trigger entire form validation and if form is valid it should update entity.~~
+- ~~after proper update user should land in the entity details page and after error should be redirected to entity list page.~~
 - use PrimeNg MessageService to Display Toast on update success and on error.
 
 ### Feature Location Dashboard
